@@ -1,5 +1,9 @@
 package particleswarm;
 
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 import java.text.DecimalFormat;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
@@ -449,7 +453,61 @@ public class MainFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_c1FieldActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-
+        
+        String csvFile = "data.csv";
+	BufferedReader br = null;
+	String line = "";
+	String cvsSplitBy = ",";
+        
+        double matr[][] = new double[nbTaches][nbMachines];
+	
+        try {
+                
+		br = new BufferedReader(new FileReader(csvFile));
+                int j = 0;
+                while ((line = br.readLine()) != null) {
+                    String[] split = line.split(cvsSplitBy);
+//                    System.out.println(split[0] + split[1] + split.length);
+                    for (int i = 0; i < split.length; i++) {
+                        matr[j][i] = Double.parseDouble(split[i]);
+                        System.out.println(matr[j][i]);
+                    }
+                    j++;
+		}
+ 
+	} catch (FileNotFoundException e) {
+		e.printStackTrace();
+	} catch (IOException e) {
+		e.printStackTrace();
+	} finally {
+		if (br != null) {
+			try {
+				br.close();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+	}
+        for (int i = 0; i < nbTaches; i++) {
+            for (int j = 0; j < nbMachines; j++) {
+                System.out.println("--     " + matr[i][j]);
+            }
+        }
+        
+        DefaultTableModel model = new DefaultTableModel();  
+        model.addColumn("Machine"); 
+        model.addColumn("Tâche");
+        model.addColumn("Temps");
+        for (int i=0; i<nbMachines ; i++)
+            for (int j=0; j<nbTaches ; j++)
+            {
+                String Jb = "T" + (j+1);
+                String Mc = "M" + (i+1);
+                String temps = matr[j][i] + "";
+                System.out.println("  " + matr[j][i]);
+                model.addRow(new Object[]{Mc,Jb,temps});
+            }
+        tableOfInput.setModel(model);
     }//GEN-LAST:event_jButton4ActionPerformed
 
     /**
