@@ -18,7 +18,7 @@ public class PSO {
     *
     */
     private double w0= 1.2;
-    private double betha=0.975;
+    private double beta=0.975;
     private double c1=2;
     private double c2=2;
     private int n;//number of jobs
@@ -26,17 +26,17 @@ public class PSO {
     private int index;
     
     private double f1=0;//local best
-    private double fg=0;//gloabbal best
+    private double fg=0;//global best
    
     double[][] X;//randomly generated particles nx2n
-    double[][] V;//vilocity matrice nx2n
+    double[][] V;//velocity matrix nx2n
     int[][] jobs;//jobs matrix that depends on X matrix nx2n
     double[][] initialJobs;//initial problem order of jobs nXn
     double[][] P;//position of local bests
     double[] completionTimeVector;//completion time for each row in X
     
     double[] bestP;//best local indexes;
-    double[] G;//postions of gloabal best
+    double[] G;//positions of global best
 
     public PSO(int  n,int m) {//jobs n*m
         this.n = n;
@@ -62,8 +62,8 @@ public class PSO {
         return w0;
     }
 
-    public double getBetha() {
-        return betha;
+    public double getBeta() {
+        return beta;
     }
 
     public double getC1() {
@@ -94,8 +94,8 @@ public class PSO {
         this.w0 = w0;
     }
 
-    public void setBetha(double betha) {
-        this.betha = betha;
+    public void setBeta(double beta) {
+        this.beta = beta;
     }
 
     public void setC1(double c1) {
@@ -190,7 +190,7 @@ public class PSO {
              V[i][j]=w0*V[i][j]+c1*Math.random()*(P[i][j]-temp )+c2*Math.random()*(G[j]-temp);// update V for the next iteration use
             }
         }
-        w0 *= betha;
+        w0 *= beta;
         
     }
     //find permutaion of each job in jobs matrix

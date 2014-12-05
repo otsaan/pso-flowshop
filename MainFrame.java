@@ -1,5 +1,6 @@
 package particleswarm;
 
+import java.text.DecimalFormat;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
@@ -20,7 +21,9 @@ public class MainFrame extends javax.swing.JFrame {
      */
     private int nbTaches = 0;
     private int nbMachines = 0;
-    
+    private String ordre = "";
+    private double duree = 0;
+
     public MainFrame() {
         initComponents();
     }
@@ -47,8 +50,8 @@ public class MainFrame extends javax.swing.JFrame {
         c2Field = new javax.swing.JTextField();
         resultatButton = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
+        tempsMinLabel = new javax.swing.JLabel();
+        ordreTachesLabel = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
@@ -56,6 +59,7 @@ public class MainFrame extends javax.swing.JFrame {
         jButton4 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         nbIterationsField = new javax.swing.JTextField();
+        jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -98,6 +102,8 @@ public class MainFrame extends javax.swing.JFrame {
         });
 
         betaField.setColumns(8);
+        betaField.setText("0.975");
+        betaField.setToolTipText("");
         betaField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 betaFieldActionPerformed(evt);
@@ -105,10 +111,23 @@ public class MainFrame extends javax.swing.JFrame {
         });
 
         omegaField.setColumns(8);
+        omegaField.setText("1.2");
+        omegaField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                omegaFieldActionPerformed(evt);
+            }
+        });
 
         c1Field.setColumns(8);
+        c1Field.setText("2");
+        c1Field.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                c1FieldActionPerformed(evt);
+            }
+        });
 
         c2Field.setColumns(8);
+        c2Field.setText("2");
 
         resultatButton.setText("Générer le résultat");
         resultatButton.addActionListener(new java.awt.event.ActionListener() {
@@ -117,35 +136,46 @@ public class MainFrame extends javax.swing.JFrame {
             }
         });
 
-        jButton3.setText("Diagramme");
+        jButton3.setText("Générer le diagramme");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton3ActionPerformed(evt);
             }
         });
 
-        jLabel3.setText("Temps Minimum:");
+        tempsMinLabel.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
+        tempsMinLabel.setText("Temps Minimum:");
 
-        jLabel4.setText("Ordre des tâches:");
+        ordreTachesLabel.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
+        ordreTachesLabel.setText("Ordre des tâches:");
 
-        jLabel5.setText("Beta");
+        jLabel5.setText("Beta:");
 
-        jLabel6.setText("Omega");
+        jLabel6.setText("Omega:");
 
-        jLabel7.setText("c1");
+        jLabel7.setText("c1:");
 
-        jLabel8.setText("c2");
+        jLabel8.setText("c2:");
 
         jButton4.setText("Lire d'un fichier CSV");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
 
+        jLabel1.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
         jLabel1.setText("Paramètres de l'algorithme:");
 
         nbIterationsField.setColumns(8);
+        nbIterationsField.setText("10");
         nbIterationsField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 nbIterationsFieldActionPerformed(evt);
             }
         });
+
+        jLabel2.setText("Nombre d'itérations:");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -154,30 +184,9 @@ public class MainFrame extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(nbMachinesField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(nbTachesLabel)
-                                    .addComponent(nbMachinesLabel)
-                                    .addComponent(nbTachesField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 16, Short.MAX_VALUE)
-                                .addComponent(jButton1))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(betaField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(c1Field, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(omegaField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(c2Field, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(25, 25, 25)
-                        .addComponent(jLabel7)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel8)
-                        .addGap(49, 49, 49))
+                        .addGap(229, 229, 229)
+                        .addComponent(jButton1)
+                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(22, 22, 22)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -185,47 +194,67 @@ public class MainFrame extends javax.swing.JFrame {
                                 .addComponent(jLabel1)
                                 .addGap(0, 0, Short.MAX_VALUE))
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel5)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jLabel6)
-                                .addGap(36, 36, 36))))
+                                .addGap(12, 12, 12)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jButton4)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                        .addComponent(nbTachesField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(nbTachesLabel)
+                                            .addComponent(nbMachinesField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(nbMachinesLabel))))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton4)))
-                .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(omegaField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel6)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(44, 44, 44)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(nbIterationsField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(c1Field, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(8, 8, 8)
+                                        .addComponent(jLabel5))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(6, 6, 6)
+                                        .addComponent(jLabel2))
+                                    .addComponent(betaField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(6, 6, 6)
+                                        .addComponent(jLabel7)))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 36, Short.MAX_VALUE)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(c2Field, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel8))))
+                        .addGap(163, 163, 163)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap())
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(resultatButton)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jButton3)
-                        .addGap(24, 24, 24))))
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGap(24, 24, 24))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(220, 220, 220)
-                        .addComponent(jLabel3))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(nbIterationsField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel4)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(ordreTachesLabel)
+                                .addComponent(tempsMinLabel)))
+                        .addContainerGap())))
         );
+
+        layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {ordreTachesLabel, tempsMinLabel});
+
+        layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {c2Field, omegaField});
+
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(51, 51, 51)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jButton3)
-                            .addComponent(resultatButton))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(nbMachinesLabel)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -237,34 +266,46 @@ public class MainFrame extends javax.swing.JFrame {
                             .addComponent(jButton1))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(nbTachesField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton4)
+                        .addGap(30, 30, 30)
+                        .addComponent(jButton4))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(51, 51, 51)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jButton3)
+                            .addComponent(resultatButton))
+                        .addGap(0, 33, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jLabel1)
-                        .addGap(18, 18, 18)
+                        .addGap(10, 10, 10)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel5)
-                            .addComponent(jLabel6))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(jLabel6))))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(betaField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(omegaField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel7)
-                            .addComponent(jLabel8))
-                        .addGap(5, 5, 5)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(c1Field, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(c2Field, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(9, 9, 9)))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel3)
-                        .addGap(18, 18, 18)
-                        .addComponent(jLabel4))
-                    .addComponent(nbIterationsField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap())
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jLabel7)
+                                    .addComponent(jLabel8))
+                                .addGap(5, 5, 5)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(c1Field, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(c2Field, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(9, 9, 9)
+                                .addComponent(jLabel2)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(nbIterationsField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(31, 31, 31)
+                                .addComponent(ordreTachesLabel))))
+                    .addComponent(tempsMinLabel))
+                .addGap(19, 19, 19))
         );
 
         pack();
@@ -280,7 +321,9 @@ public class MainFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_betaFieldActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        // TODO add your handling code here:
+
+        
+        
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void nbTachesFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nbTachesFieldActionPerformed
@@ -293,7 +336,7 @@ public class MainFrame extends javax.swing.JFrame {
             nbTaches = Integer.parseInt(nbTachesField.getText());
             nbMachines = Integer.parseInt(nbMachinesField.getText());
         } catch(Exception e) {
-            JOptionPane.showMessageDialog(this, "Please enter a valid number", "Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Veuillez entrer un numéro valide", "Erreur", JOptionPane.ERROR_MESSAGE);
         }
 //        System.out.println(nbMachines + "  " + nbTaches);
         
@@ -343,7 +386,7 @@ public class MainFrame extends javax.swing.JFrame {
             c2 = Double.parseDouble(c2Field.getText());
             nbIterations = Integer.parseInt(nbIterationsField.getText());
         } catch(Exception e) {
-            JOptionPane.showMessageDialog(this, "Please enter a valid number", "Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Veuillez entrer un numéro valide", "Erreur", JOptionPane.ERROR_MESSAGE);
         }
         
         PSO pso= new PSO(nbTaches, nbMachines);
@@ -356,17 +399,17 @@ public class MainFrame extends javax.swing.JFrame {
         
 
         double mat[][] = getTableData(tableOfInput);
-
-        for(int i=0;i<nbTaches;i++)
-        {
-            for(int j=0;j<nbMachines;j++)
-            {
-                System.out.print(mat[i][j]+" ");
-            }
-            System.out.println();
-        }
+//
+//        for(int i=0;i<nbTaches;i++)
+//        {
+//            for(int j=0;j<nbMachines;j++)
+//            {
+//                System.out.print(mat[i][j]+" ");
+//            }
+//            System.out.println();
+//        }
         
-        pso.setInitialJobs(getTableData(tableOfInput));
+        pso.setInitialJobs(mat);
         pso.initialise();
         pso.findPermutaion();
         pso.initialiseBestP();
@@ -381,16 +424,33 @@ public class MainFrame extends javax.swing.JFrame {
             pso.findPersonaleBest();
             pso.findGloabalBest();  
         }
-        
-        System.out.println(pso.getFg());
+        DecimalFormat df = new DecimalFormat("#");
+//        System.out.println(pso.getFg());
+        ordre = "";
         for(int i=0;i<pso.getN();i++)
-            System.out.print(pso.getG()[i]+" ");
+            ordre += df.format(pso.getG()[i]) + " ";
+        
+        duree = pso.getFg();
+        this.tempsMinLabel.setText("Temps Minimum: " + pso.getFg());        
+        this.ordreTachesLabel.setText("Ordre des tâches: " + ordre);
         
     }//GEN-LAST:event_resultatButtonActionPerformed
 
     private void nbIterationsFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nbIterationsFieldActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_nbIterationsFieldActionPerformed
+
+    private void omegaFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_omegaFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_omegaFieldActionPerformed
+
+    private void c1FieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_c1FieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_c1FieldActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+
+    }//GEN-LAST:event_jButton4ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -436,8 +496,7 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
@@ -449,7 +508,9 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JTextField nbTachesField;
     private javax.swing.JLabel nbTachesLabel;
     private javax.swing.JTextField omegaField;
+    private javax.swing.JLabel ordreTachesLabel;
     private javax.swing.JButton resultatButton;
     private javax.swing.JTable tableOfInput;
+    private javax.swing.JLabel tempsMinLabel;
     // End of variables declaration//GEN-END:variables
 }
