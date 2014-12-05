@@ -47,23 +47,23 @@ public class MainFrame extends javax.swing.JFrame {
         nbMachinesField = new javax.swing.JTextField();
         nbTachesLabel = new javax.swing.JLabel();
         nbTachesField = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
+        validerButton = new javax.swing.JButton();
         betaField = new javax.swing.JTextField();
         omegaField = new javax.swing.JTextField();
         c1Field = new javax.swing.JTextField();
         c2Field = new javax.swing.JTextField();
         resultatButton = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        diagrammeButton = new javax.swing.JButton();
         tempsMinLabel = new javax.swing.JLabel();
         ordreTachesLabel = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
-        jButton4 = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
+        betaLabel = new javax.swing.JLabel();
+        omegaLabel = new javax.swing.JLabel();
+        c1Label = new javax.swing.JLabel();
+        c2Label = new javax.swing.JLabel();
+        lireCSVButton = new javax.swing.JButton();
+        parametresLabel = new javax.swing.JLabel();
         nbIterationsField = new javax.swing.JTextField();
-        jLabel2 = new javax.swing.JLabel();
+        nbIterationsLabel = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -98,10 +98,10 @@ public class MainFrame extends javax.swing.JFrame {
             }
         });
 
-        jButton1.setText("Valider");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        validerButton.setText("Valider");
+        validerButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                validerButtonActionPerformed(evt);
             }
         });
 
@@ -140,10 +140,10 @@ public class MainFrame extends javax.swing.JFrame {
             }
         });
 
-        jButton3.setText("Générer le diagramme");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        diagrammeButton.setText("Générer le diagramme");
+        diagrammeButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                diagrammeButtonActionPerformed(evt);
             }
         });
 
@@ -153,23 +153,23 @@ public class MainFrame extends javax.swing.JFrame {
         ordreTachesLabel.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
         ordreTachesLabel.setText("Ordre des tâches:");
 
-        jLabel5.setText("Beta:");
+        betaLabel.setText("Beta:");
 
-        jLabel6.setText("Omega:");
+        omegaLabel.setText("Omega:");
 
-        jLabel7.setText("c1:");
+        c1Label.setText("c1:");
 
-        jLabel8.setText("c2:");
+        c2Label.setText("c2:");
 
-        jButton4.setText("Lire d'un fichier CSV");
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
+        lireCSVButton.setText("Lire depuis un fichier CSV");
+        lireCSVButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
+                lireCSVButtonActionPerformed(evt);
             }
         });
 
-        jLabel1.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
-        jLabel1.setText("Paramètres de l'algorithme:");
+        parametresLabel.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
+        parametresLabel.setText("Paramètres de l'algorithme:");
 
         nbIterationsField.setColumns(8);
         nbIterationsField.setText("10");
@@ -179,7 +179,7 @@ public class MainFrame extends javax.swing.JFrame {
             }
         });
 
-        jLabel2.setText("Nombre d'itérations:");
+        nbIterationsLabel.setText("Nombre d'itérations:");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -189,18 +189,18 @@ public class MainFrame extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(229, 229, 229)
-                        .addComponent(jButton1)
+                        .addComponent(validerButton)
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(22, 22, 22)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel1)
+                                .addComponent(parametresLabel)
                                 .addGap(0, 0, Short.MAX_VALUE))
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(12, 12, 12)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jButton4)
+                                    .addComponent(lireCSVButton)
                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                         .addComponent(nbTachesField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -214,7 +214,7 @@ public class MainFrame extends javax.swing.JFrame {
                                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(omegaField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel6)))
+                                    .addComponent(omegaLabel)))
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(44, 44, 44)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -222,24 +222,24 @@ public class MainFrame extends javax.swing.JFrame {
                                     .addComponent(c1Field, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGroup(layout.createSequentialGroup()
                                         .addGap(8, 8, 8)
-                                        .addComponent(jLabel5))
+                                        .addComponent(betaLabel))
                                     .addGroup(layout.createSequentialGroup()
                                         .addGap(6, 6, 6)
-                                        .addComponent(jLabel2))
+                                        .addComponent(nbIterationsLabel))
                                     .addComponent(betaField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGroup(layout.createSequentialGroup()
                                         .addGap(6, 6, 6)
-                                        .addComponent(jLabel7)))
+                                        .addComponent(c1Label)))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 36, Short.MAX_VALUE)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(c2Field, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel8))))
+                                    .addComponent(c2Label))))
                         .addGap(163, 163, 163)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(resultatButton)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton3)
+                        .addComponent(diagrammeButton)
                         .addGap(24, 24, 24))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -267,26 +267,26 @@ public class MainFrame extends javax.swing.JFrame {
                                 .addComponent(nbMachinesField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(nbTachesLabel))
-                            .addComponent(jButton1))
+                            .addComponent(validerButton))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(nbTachesField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(30, 30, 30)
-                        .addComponent(jButton4))
+                        .addComponent(lireCSVButton))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(51, 51, 51)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jButton3)
+                            .addComponent(diagrammeButton)
                             .addComponent(resultatButton))
                         .addGap(0, 33, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel1)
+                        .addComponent(parametresLabel)
                         .addGap(10, 10, 10)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel5)
-                            .addComponent(jLabel6))))
+                            .addComponent(betaLabel)
+                            .addComponent(omegaLabel))))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -295,14 +295,14 @@ public class MainFrame extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jLabel7)
-                                    .addComponent(jLabel8))
+                                    .addComponent(c1Label)
+                                    .addComponent(c2Label))
                                 .addGap(5, 5, 5)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(c1Field, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(c2Field, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(9, 9, 9)
-                                .addComponent(jLabel2)
+                                .addComponent(nbIterationsLabel)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(nbIterationsField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
@@ -324,17 +324,17 @@ public class MainFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_betaFieldActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    private void diagrammeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_diagrammeButtonActionPerformed
 
         
         
-    }//GEN-LAST:event_jButton3ActionPerformed
+    }//GEN-LAST:event_diagrammeButtonActionPerformed
 
     private void nbTachesFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nbTachesFieldActionPerformed
         
     }//GEN-LAST:event_nbTachesFieldActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void validerButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_validerButtonActionPerformed
 
         try {
             nbTaches = Integer.parseInt(nbTachesField.getText());
@@ -356,7 +356,7 @@ public class MainFrame extends javax.swing.JFrame {
                 model.addRow(new Object[]{Mc,Jb});
             }
         tableOfInput.setModel(model);
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_validerButtonActionPerformed
 
     public double[][] getTableData (JTable table) {
         DefaultTableModel dtm = (DefaultTableModel) table.getModel();
@@ -452,7 +452,7 @@ public class MainFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_c1FieldActionPerformed
 
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+    private void lireCSVButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lireCSVButtonActionPerformed
         
         String csvFile = "data.csv";
 	BufferedReader br = null;
@@ -508,7 +508,7 @@ public class MainFrame extends javax.swing.JFrame {
                 model.addRow(new Object[]{Mc,Jb,temps});
             }
         tableOfInput.setModel(model);
-    }//GEN-LAST:event_jButton4ActionPerformed
+    }//GEN-LAST:event_lireCSVButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -548,27 +548,27 @@ public class MainFrame extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField betaField;
+    private javax.swing.JLabel betaLabel;
     private javax.swing.JTextField c1Field;
+    private javax.swing.JLabel c1Label;
     private javax.swing.JTextField c2Field;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel c2Label;
+    private javax.swing.JButton diagrammeButton;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JButton lireCSVButton;
     private javax.swing.JTextField nbIterationsField;
+    private javax.swing.JLabel nbIterationsLabel;
     private javax.swing.JTextField nbMachinesField;
     private javax.swing.JLabel nbMachinesLabel;
     private javax.swing.JTextField nbTachesField;
     private javax.swing.JLabel nbTachesLabel;
     private javax.swing.JTextField omegaField;
+    private javax.swing.JLabel omegaLabel;
     private javax.swing.JLabel ordreTachesLabel;
+    private javax.swing.JLabel parametresLabel;
     private javax.swing.JButton resultatButton;
     private javax.swing.JTable tableOfInput;
     private javax.swing.JLabel tempsMinLabel;
+    private javax.swing.JButton validerButton;
     // End of variables declaration//GEN-END:variables
 }
