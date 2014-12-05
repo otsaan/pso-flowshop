@@ -43,274 +43,155 @@ public class MainFrame extends javax.swing.JFrame {
 
         jScrollPane1 = new javax.swing.JScrollPane();
         tableOfInput = new javax.swing.JTable();
-        nbMachinesLabel = new javax.swing.JLabel();
         nbMachinesField = new javax.swing.JTextField();
-        nbTachesLabel = new javax.swing.JLabel();
         nbTachesField = new javax.swing.JTextField();
-        validerButton = new javax.swing.JButton();
         betaField = new javax.swing.JTextField();
         omegaField = new javax.swing.JTextField();
         c1Field = new javax.swing.JTextField();
         c2Field = new javax.swing.JTextField();
-        resultatButton = new javax.swing.JButton();
-        diagrammeButton = new javax.swing.JButton();
+        nbIterationsField = new javax.swing.JTextField();
         tempsMinLabel = new javax.swing.JLabel();
         ordreTachesLabel = new javax.swing.JLabel();
-        betaLabel = new javax.swing.JLabel();
-        omegaLabel = new javax.swing.JLabel();
-        c1Label = new javax.swing.JLabel();
-        c2Label = new javax.swing.JLabel();
-        lireCSVButton = new javax.swing.JButton();
-        parametresLabel = new javax.swing.JLabel();
-        nbIterationsField = new javax.swing.JTextField();
-        nbIterationsLabel = new javax.swing.JLabel();
+        lireDepuisCsv = new javax.swing.JLabel();
+        valider = new javax.swing.JLabel();
+        genererResultat = new javax.swing.JLabel();
+        genereDiagramme = new javax.swing.JLabel();
+        bg = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        tableOfInput.setFont(new java.awt.Font("Bitter", 0, 12)); // NOI18N
         tableOfInput.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
                 {null, null, null},
                 {null, null, null},
                 {null, null, null},
                 {null, null, null}
             },
             new String [] {
-                "Machine", "Tâche", "Temps"
+                "", "", ""
             }
         ));
         jScrollPane1.setViewportView(tableOfInput);
 
-        nbMachinesLabel.setText("Nombre de machines");
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 80, 330, 160));
 
         nbMachinesField.setColumns(12);
+        nbMachinesField.setFont(new java.awt.Font("Bitter", 0, 13)); // NOI18N
+        nbMachinesField.setBorder(null);
         nbMachinesField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 nbMachinesFieldActionPerformed(evt);
             }
         });
-
-        nbTachesLabel.setText("Nombre de tâches");
+        getContentPane().add(nbMachinesField, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 70, 130, 20));
 
         nbTachesField.setColumns(12);
+        nbTachesField.setFont(new java.awt.Font("Bitter", 0, 13)); // NOI18N
+        nbTachesField.setBorder(null);
         nbTachesField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 nbTachesFieldActionPerformed(evt);
             }
         });
-
-        validerButton.setText("Valider");
-        validerButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                validerButtonActionPerformed(evt);
-            }
-        });
+        getContentPane().add(nbTachesField, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 140, 120, 20));
 
         betaField.setColumns(8);
+        betaField.setFont(new java.awt.Font("Bitter", 0, 13)); // NOI18N
         betaField.setText("0.975");
         betaField.setToolTipText("");
+        betaField.setBorder(null);
         betaField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 betaFieldActionPerformed(evt);
             }
         });
+        getContentPane().add(betaField, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 380, 40, 20));
 
         omegaField.setColumns(8);
+        omegaField.setFont(new java.awt.Font("Bitter", 0, 13)); // NOI18N
         omegaField.setText("1.2");
+        omegaField.setBorder(null);
         omegaField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 omegaFieldActionPerformed(evt);
             }
         });
+        getContentPane().add(omegaField, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 420, 30, 10));
 
         c1Field.setColumns(8);
+        c1Field.setFont(new java.awt.Font("Bitter", 0, 13)); // NOI18N
         c1Field.setText("2");
+        c1Field.setBorder(null);
         c1Field.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 c1FieldActionPerformed(evt);
             }
         });
+        getContentPane().add(c1Field, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 450, 20, 10));
 
         c2Field.setColumns(8);
+        c2Field.setFont(new java.awt.Font("Bitter", 0, 13)); // NOI18N
         c2Field.setText("2");
-
-        resultatButton.setText("Générer le résultat");
-        resultatButton.addActionListener(new java.awt.event.ActionListener() {
+        c2Field.setBorder(null);
+        c2Field.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                resultatButtonActionPerformed(evt);
+                c2FieldActionPerformed(evt);
             }
         });
-
-        diagrammeButton.setText("Générer le diagramme");
-        diagrammeButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                diagrammeButtonActionPerformed(evt);
-            }
-        });
-
-        tempsMinLabel.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
-        tempsMinLabel.setText("Temps Minimum:");
-
-        ordreTachesLabel.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
-        ordreTachesLabel.setText("Ordre des tâches:");
-
-        betaLabel.setText("Beta:");
-
-        omegaLabel.setText("Omega:");
-
-        c1Label.setText("c1:");
-
-        c2Label.setText("c2:");
-
-        lireCSVButton.setText("Lire depuis un fichier CSV");
-        lireCSVButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                lireCSVButtonActionPerformed(evt);
-            }
-        });
-
-        parametresLabel.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
-        parametresLabel.setText("Paramètres de l'algorithme:");
+        getContentPane().add(c2Field, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 480, 20, 20));
 
         nbIterationsField.setColumns(8);
+        nbIterationsField.setFont(new java.awt.Font("Bitter", 0, 13)); // NOI18N
         nbIterationsField.setText("10");
+        nbIterationsField.setBorder(null);
         nbIterationsField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 nbIterationsFieldActionPerformed(evt);
             }
         });
+        getContentPane().add(nbIterationsField, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 430, 30, -1));
 
-        nbIterationsLabel.setText("Nombre d'itérations:");
+        tempsMinLabel.setFont(new java.awt.Font("Bitter", 0, 14)); // NOI18N
+        tempsMinLabel.setForeground(new java.awt.Color(255, 255, 255));
+        getContentPane().add(tempsMinLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 390, 130, 40));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(229, 229, 229)
-                        .addComponent(validerButton)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(22, 22, 22)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(parametresLabel)
-                                .addGap(0, 0, Short.MAX_VALUE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(12, 12, 12)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(lireCSVButton)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                        .addComponent(nbTachesField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(nbTachesLabel)
-                                            .addComponent(nbMachinesField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(nbMachinesLabel))))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(omegaField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(omegaLabel)))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(44, 44, 44)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(nbIterationsField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(c1Field, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(8, 8, 8)
-                                        .addComponent(betaLabel))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(6, 6, 6)
-                                        .addComponent(nbIterationsLabel))
-                                    .addComponent(betaField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(6, 6, 6)
-                                        .addComponent(c1Label)))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 36, Short.MAX_VALUE)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(c2Field, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(c2Label))))
-                        .addGap(163, 163, 163)))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(resultatButton)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(diagrammeButton)
-                        .addGap(24, 24, 24))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(ordreTachesLabel)
-                                .addComponent(tempsMinLabel)))
-                        .addContainerGap())))
-        );
+        ordreTachesLabel.setFont(new java.awt.Font("Bitter", 0, 14)); // NOI18N
+        ordreTachesLabel.setForeground(new java.awt.Color(255, 255, 255));
+        getContentPane().add(ordreTachesLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 440, 130, 40));
 
-        layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {ordreTachesLabel, tempsMinLabel});
+        lireDepuisCsv.setToolTipText("a");
+        lireDepuisCsv.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lireDepuisCsvMouseClicked(evt);
+            }
+        });
+        getContentPane().add(lireDepuisCsv, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 310, 270, 30));
 
-        layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {c2Field, omegaField});
+        valider.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                validerMouseClicked(evt);
+            }
+        });
+        getContentPane().add(valider, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 100, 70, 30));
 
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(nbMachinesLabel)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(nbMachinesField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(nbTachesLabel))
-                            .addComponent(validerButton))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(nbTachesField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(30, 30, 30)
-                        .addComponent(lireCSVButton))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(51, 51, 51)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(diagrammeButton)
-                            .addComponent(resultatButton))
-                        .addGap(0, 33, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(parametresLabel)
-                        .addGap(10, 10, 10)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(betaLabel)
-                            .addComponent(omegaLabel))))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(betaField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(omegaField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(c1Label)
-                                    .addComponent(c2Label))
-                                .addGap(5, 5, 5)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(c1Field, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(c2Field, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(9, 9, 9)
-                                .addComponent(nbIterationsLabel)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(nbIterationsField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(31, 31, 31)
-                                .addComponent(ordreTachesLabel))))
-                    .addComponent(tempsMinLabel))
-                .addGap(19, 19, 19))
-        );
+        genererResultat.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                genererResultatMouseClicked(evt);
+            }
+        });
+        getContentPane().add(genererResultat, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 340, 140, 20));
+        getContentPane().add(genereDiagramme, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 340, 140, 20));
+
+        bg.setIcon(new javax.swing.ImageIcon(getClass().getResource("/particleswarm/images/pso.png"))); // NOI18N
+        bg.setText(" ");
+        getContentPane().add(bg, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 800, 550));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -324,19 +205,95 @@ public class MainFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_betaFieldActionPerformed
 
-    private void diagrammeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_diagrammeButtonActionPerformed
-
-        
-        
-    }//GEN-LAST:event_diagrammeButtonActionPerformed
-
     private void nbTachesFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nbTachesFieldActionPerformed
         
     }//GEN-LAST:event_nbTachesFieldActionPerformed
 
-    private void validerButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_validerButtonActionPerformed
+    public double[][] getTableData (JTable table) {
+        DefaultTableModel dtm = (DefaultTableModel) table.getModel();
+        double Matrice[][] = new double[nbTaches][nbMachines];
+        int itr=0;
+        for (int i = 0 ; i<nbMachines ; i++)
+        {
+            for (int j = 0 ; j <nbTaches ; j++)
+            {
+                if (dtm.getValueAt(itr,2)==null) return null;
+                Matrice[j][i] = Double.parseDouble(dtm.getValueAt(itr,2).toString());
+                itr++;
+            }
 
+        }
+        return Matrice;
+    }
+        
+    private void nbIterationsFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nbIterationsFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_nbIterationsFieldActionPerformed
+
+    private void omegaFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_omegaFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_omegaFieldActionPerformed
+
+    private void c1FieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_c1FieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_c1FieldActionPerformed
+
+    private void lireDepuisCsvMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lireDepuisCsvMouseClicked
+          String csvFile = "data.csv";
+	BufferedReader br = null;
+	String line = "";
+	String cvsSplitBy = ",";
+        
+        double matr[][] = new double[nbTaches][nbMachines];
+	
         try {
+                
+		br = new BufferedReader(new FileReader(csvFile));
+                int j = 0;
+                while ((line = br.readLine()) != null) {
+                    String[] split = line.split(cvsSplitBy);
+//                    System.out.println(split[0] + split[1] + split.length);
+                    for (int i = 0; i < split.length; i++) {
+                        matr[j][i] = Double.parseDouble(split[i]);
+                        System.out.println(matr[j][i]);
+                    }
+                    j++;
+		}
+ 
+	} catch (FileNotFoundException e) {
+		e.printStackTrace();
+	} catch (IOException e) {
+		e.printStackTrace();
+	} finally {
+		if (br != null) {
+			try {
+				br.close();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+	}
+        for (int i = 0; i < nbTaches; i++) {
+            for (int j = 0; j < nbMachines; j++) {
+                System.out.println("--     " + matr[i][j]);
+            }
+        }
+        
+        DefaultTableModel model = new DefaultTableModel();  
+        for (int i=0; i<nbMachines ; i++)
+            for (int j=0; j<nbTaches ; j++)
+            {
+                String Jb = "T" + (j+1);
+                String Mc = "M" + (i+1);
+                String temps = matr[j][i] + "";
+                System.out.println("  " + matr[j][i]);
+                model.addRow(new Object[]{Mc,Jb,temps});
+            }
+        tableOfInput.setModel(model);
+    }//GEN-LAST:event_lireDepuisCsvMouseClicked
+
+    private void validerMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_validerMouseClicked
+         try {
             nbTaches = Integer.parseInt(nbTachesField.getText());
             nbMachines = Integer.parseInt(nbMachinesField.getText());
         } catch(Exception e) {
@@ -356,27 +313,10 @@ public class MainFrame extends javax.swing.JFrame {
                 model.addRow(new Object[]{Mc,Jb});
             }
         tableOfInput.setModel(model);
-    }//GEN-LAST:event_validerButtonActionPerformed
+    }//GEN-LAST:event_validerMouseClicked
 
-    public double[][] getTableData (JTable table) {
-        DefaultTableModel dtm = (DefaultTableModel) table.getModel();
-        double Matrice[][] = new double[nbTaches][nbMachines];
-        int itr=0;
-        for (int i = 0 ; i<nbMachines ; i++)
-        {
-            for (int j = 0 ; j <nbTaches ; j++)
-            {
-                if (dtm.getValueAt(itr,2)==null) return null;
-                Matrice[j][i] = Double.parseDouble(dtm.getValueAt(itr,2).toString());
-                itr++;
-            }
-
-        }
-        return Matrice;
-    }
-        
-    private void resultatButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_resultatButtonActionPerformed
-        
+    private void genererResultatMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_genererResultatMouseClicked
+         
         double omega = 1.2;
         double beta = 0.975;
         double c1 = 2;
@@ -435,80 +375,13 @@ public class MainFrame extends javax.swing.JFrame {
             ordre += df.format(pso.getG()[i]) + " ";
         
         duree = pso.getFg();
-        this.tempsMinLabel.setText("Temps Minimum: " + pso.getFg());        
-        this.ordreTachesLabel.setText("Ordre des tâches: " + ordre);
-        
-    }//GEN-LAST:event_resultatButtonActionPerformed
+        this.tempsMinLabel.setText(" " + pso.getFg());        
+        this.ordreTachesLabel.setText(" " + ordre);
+    }//GEN-LAST:event_genererResultatMouseClicked
 
-    private void nbIterationsFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nbIterationsFieldActionPerformed
+    private void c2FieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_c2FieldActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_nbIterationsFieldActionPerformed
-
-    private void omegaFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_omegaFieldActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_omegaFieldActionPerformed
-
-    private void c1FieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_c1FieldActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_c1FieldActionPerformed
-
-    private void lireCSVButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lireCSVButtonActionPerformed
-        
-        String csvFile = "data.csv";
-	BufferedReader br = null;
-	String line = "";
-	String cvsSplitBy = ",";
-        
-        double matr[][] = new double[nbTaches][nbMachines];
-	
-        try {
-                
-		br = new BufferedReader(new FileReader(csvFile));
-                int j = 0;
-                while ((line = br.readLine()) != null) {
-                    String[] split = line.split(cvsSplitBy);
-//                    System.out.println(split[0] + split[1] + split.length);
-                    for (int i = 0; i < split.length; i++) {
-                        matr[j][i] = Double.parseDouble(split[i]);
-                        System.out.println(matr[j][i]);
-                    }
-                    j++;
-		}
- 
-	} catch (FileNotFoundException e) {
-		e.printStackTrace();
-	} catch (IOException e) {
-		e.printStackTrace();
-	} finally {
-		if (br != null) {
-			try {
-				br.close();
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-		}
-	}
-        for (int i = 0; i < nbTaches; i++) {
-            for (int j = 0; j < nbMachines; j++) {
-                System.out.println("--     " + matr[i][j]);
-            }
-        }
-        
-        DefaultTableModel model = new DefaultTableModel();  
-        model.addColumn("Machine"); 
-        model.addColumn("Tâche");
-        model.addColumn("Temps");
-        for (int i=0; i<nbMachines ; i++)
-            for (int j=0; j<nbTaches ; j++)
-            {
-                String Jb = "T" + (j+1);
-                String Mc = "M" + (i+1);
-                String temps = matr[j][i] + "";
-                System.out.println("  " + matr[j][i]);
-                model.addRow(new Object[]{Mc,Jb,temps});
-            }
-        tableOfInput.setModel(model);
-    }//GEN-LAST:event_lireCSVButtonActionPerformed
+    }//GEN-LAST:event_c2FieldActionPerformed
 
     /**
      * @param args the command line arguments
@@ -548,27 +421,20 @@ public class MainFrame extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField betaField;
-    private javax.swing.JLabel betaLabel;
+    private javax.swing.JLabel bg;
     private javax.swing.JTextField c1Field;
-    private javax.swing.JLabel c1Label;
     private javax.swing.JTextField c2Field;
-    private javax.swing.JLabel c2Label;
-    private javax.swing.JButton diagrammeButton;
+    private javax.swing.JLabel genereDiagramme;
+    private javax.swing.JLabel genererResultat;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JButton lireCSVButton;
+    private javax.swing.JLabel lireDepuisCsv;
     private javax.swing.JTextField nbIterationsField;
-    private javax.swing.JLabel nbIterationsLabel;
     private javax.swing.JTextField nbMachinesField;
-    private javax.swing.JLabel nbMachinesLabel;
     private javax.swing.JTextField nbTachesField;
-    private javax.swing.JLabel nbTachesLabel;
     private javax.swing.JTextField omegaField;
-    private javax.swing.JLabel omegaLabel;
     private javax.swing.JLabel ordreTachesLabel;
-    private javax.swing.JLabel parametresLabel;
-    private javax.swing.JButton resultatButton;
     private javax.swing.JTable tableOfInput;
     private javax.swing.JLabel tempsMinLabel;
-    private javax.swing.JButton validerButton;
+    private javax.swing.JLabel valider;
     // End of variables declaration//GEN-END:variables
 }
