@@ -90,7 +90,7 @@ public class MainFrame extends javax.swing.JFrame {
                 nbMachinesFieldActionPerformed(evt);
             }
         });
-        getContentPane().add(nbMachinesField, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 70, 130, 20));
+        getContentPane().add(nbMachinesField, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 73, 130, 20));
 
         nbTachesField.setColumns(12);
         nbTachesField.setFont(new java.awt.Font("Bitter", 0, 13)); // NOI18N
@@ -100,7 +100,7 @@ public class MainFrame extends javax.swing.JFrame {
                 nbTachesFieldActionPerformed(evt);
             }
         });
-        getContentPane().add(nbTachesField, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 140, 120, 20));
+        getContentPane().add(nbTachesField, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 136, 120, 20));
 
         betaField.setColumns(8);
         betaField.setFont(new java.awt.Font("Bitter", 0, 13)); // NOI18N
@@ -112,7 +112,7 @@ public class MainFrame extends javax.swing.JFrame {
                 betaFieldActionPerformed(evt);
             }
         });
-        getContentPane().add(betaField, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 380, 40, 20));
+        getContentPane().add(betaField, new org.netbeans.lib.awtextra.AbsoluteConstraints(83, 380, 40, 20));
 
         omegaField.setColumns(8);
         omegaField.setFont(new java.awt.Font("Bitter", 0, 13)); // NOI18N
@@ -123,7 +123,7 @@ public class MainFrame extends javax.swing.JFrame {
                 omegaFieldActionPerformed(evt);
             }
         });
-        getContentPane().add(omegaField, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 420, 30, 10));
+        getContentPane().add(omegaField, new org.netbeans.lib.awtextra.AbsoluteConstraints(89, 418, 30, 10));
 
         c1Field.setColumns(8);
         c1Field.setFont(new java.awt.Font("Bitter", 0, 13)); // NOI18N
@@ -172,7 +172,7 @@ public class MainFrame extends javax.swing.JFrame {
                 lireDepuisCsvMouseClicked(evt);
             }
         });
-        getContentPane().add(lireDepuisCsv, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 310, 270, 30));
+        getContentPane().add(lireDepuisCsv, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 202, 190, 30));
 
         valider.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -239,7 +239,7 @@ public class MainFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_c1FieldActionPerformed
 
     private void lireDepuisCsvMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lireDepuisCsvMouseClicked
-          String csvFile = "data.csv";
+        String csvFile = "data.csv";
 	BufferedReader br = null;
 	String line = "";
 	String cvsSplitBy = ",";
@@ -261,24 +261,19 @@ public class MainFrame extends javax.swing.JFrame {
 		}
  
 	} catch (FileNotFoundException e) {
-		e.printStackTrace();
+		JOptionPane.showMessageDialog(this, "Fichier Inexistant", "Erreur", JOptionPane.ERROR_MESSAGE);
 	} catch (IOException e) {
-		e.printStackTrace();
+		JOptionPane.showMessageDialog(this, "Erreur de lecture", "Erreur", JOptionPane.ERROR_MESSAGE);
 	} finally {
 		if (br != null) {
 			try {
 				br.close();
 			} catch (IOException e) {
-				e.printStackTrace();
+				JOptionPane.showMessageDialog(this, "Erreur de lecture", "Erreur", JOptionPane.ERROR_MESSAGE);
 			}
 		}
 	}
-        for (int i = 0; i < nbTaches; i++) {
-            for (int j = 0; j < nbMachines; j++) {
-                System.out.println("--     " + matr[i][j]);
-            }
-        }
-        
+
         DefaultTableModel model = new DefaultTableModel();  
         for (int i=0; i<nbMachines ; i++)
             for (int j=0; j<nbTaches ; j++)
@@ -286,7 +281,6 @@ public class MainFrame extends javax.swing.JFrame {
                 String Jb = "T" + (j+1);
                 String Mc = "M" + (i+1);
                 String temps = matr[j][i] + "";
-                System.out.println("  " + matr[j][i]);
                 model.addRow(new Object[]{Mc,Jb,temps});
             }
         tableOfInput.setModel(model);
