@@ -78,6 +78,7 @@ public class MainFrame extends javax.swing.JFrame {
                 "", "", ""
             }
         ));
+        tableOfInput.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
         jScrollPane1.setViewportView(tableOfInput);
 
         getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 80, 330, 160));
@@ -85,6 +86,7 @@ public class MainFrame extends javax.swing.JFrame {
         nbMachinesField.setColumns(12);
         nbMachinesField.setFont(new java.awt.Font("Bitter", 0, 13)); // NOI18N
         nbMachinesField.setBorder(null);
+        nbMachinesField.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
         nbMachinesField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 nbMachinesFieldActionPerformed(evt);
@@ -95,6 +97,7 @@ public class MainFrame extends javax.swing.JFrame {
         nbTachesField.setColumns(12);
         nbTachesField.setFont(new java.awt.Font("Bitter", 0, 13)); // NOI18N
         nbTachesField.setBorder(null);
+        nbTachesField.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
         nbTachesField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 nbTachesFieldActionPerformed(evt);
@@ -107,6 +110,7 @@ public class MainFrame extends javax.swing.JFrame {
         betaField.setText("0.975");
         betaField.setToolTipText("");
         betaField.setBorder(null);
+        betaField.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
         betaField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 betaFieldActionPerformed(evt);
@@ -118,6 +122,7 @@ public class MainFrame extends javax.swing.JFrame {
         omegaField.setFont(new java.awt.Font("Bitter", 0, 13)); // NOI18N
         omegaField.setText("1.2");
         omegaField.setBorder(null);
+        omegaField.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
         omegaField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 omegaFieldActionPerformed(evt);
@@ -129,6 +134,7 @@ public class MainFrame extends javax.swing.JFrame {
         c1Field.setFont(new java.awt.Font("Bitter", 0, 13)); // NOI18N
         c1Field.setText("2");
         c1Field.setBorder(null);
+        c1Field.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
         c1Field.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 c1FieldActionPerformed(evt);
@@ -140,6 +146,7 @@ public class MainFrame extends javax.swing.JFrame {
         c2Field.setFont(new java.awt.Font("Bitter", 0, 13)); // NOI18N
         c2Field.setText("2");
         c2Field.setBorder(null);
+        c2Field.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
         c2Field.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 c2FieldActionPerformed(evt);
@@ -151,6 +158,7 @@ public class MainFrame extends javax.swing.JFrame {
         nbIterationsField.setFont(new java.awt.Font("Bitter", 0, 13)); // NOI18N
         nbIterationsField.setText("10");
         nbIterationsField.setBorder(null);
+        nbIterationsField.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
         nbIterationsField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 nbIterationsFieldActionPerformed(evt);
@@ -167,6 +175,7 @@ public class MainFrame extends javax.swing.JFrame {
         getContentPane().add(ordreTachesLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 440, 130, 40));
 
         lireDepuisCsv.setToolTipText("a");
+        lireDepuisCsv.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         lireDepuisCsv.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 lireDepuisCsvMouseClicked(evt);
@@ -174,6 +183,8 @@ public class MainFrame extends javax.swing.JFrame {
         });
         getContentPane().add(lireDepuisCsv, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 202, 190, 30));
 
+        valider.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        valider.setName(""); // NOI18N
         valider.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 validerMouseClicked(evt);
@@ -181,12 +192,15 @@ public class MainFrame extends javax.swing.JFrame {
         });
         getContentPane().add(valider, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 100, 70, 30));
 
+        genererResultat.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         genererResultat.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 genererResultatMouseClicked(evt);
             }
         });
         getContentPane().add(genererResultat, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 340, 140, 20));
+
+        genereDiagramme.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         getContentPane().add(genereDiagramme, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 340, 140, 20));
 
         bg.setIcon(new javax.swing.ImageIcon(getClass().getResource("/particleswarm/images/pso.png"))); // NOI18N
