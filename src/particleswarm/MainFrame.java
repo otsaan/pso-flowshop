@@ -26,7 +26,6 @@ public class MainFrame extends javax.swing.JFrame {
     private int nbTaches = 0;
     private int nbMachines = 0;
     private String ordre = "";
-    private double duree = 0;
 
     public MainFrame() {
         initComponents();
@@ -310,9 +309,9 @@ public class MainFrame extends javax.swing.JFrame {
 //        System.out.println(nbMachines + "  " + nbTaches);
         
         DefaultTableModel model = new DefaultTableModel();  
-        model.addColumn("Machine"); 
-        model.addColumn("Tâche");
-        model.addColumn("Temps");
+        model.addColumn(""); 
+        model.addColumn("");
+        model.addColumn("");
         for (int i=1; i<=nbMachines ; i++)
             for (int j=1; j<=nbTaches ; j++)
             {
@@ -351,16 +350,7 @@ public class MainFrame extends javax.swing.JFrame {
         
 
         double mat[][] = getTableData(tableOfInput);
-//
-//        for(int i=0;i<nbTaches;i++)
-//        {
-//            for(int j=0;j<nbMachines;j++)
-//            {
-//                System.out.print(mat[i][j]+" ");
-//            }
-//            System.out.println();
-//        }
-        
+   
         pso.setInitialJobs(mat);
         pso.initialise();
         pso.findPermutaion();
@@ -377,12 +367,10 @@ public class MainFrame extends javax.swing.JFrame {
             pso.findGloabalBest();  
         }
         DecimalFormat df = new DecimalFormat("#");
-//        System.out.println(pso.getFg());
-        ordre = "";
+
         for(int i=0;i<pso.getN();i++)
             ordre += df.format(pso.getG()[i]) + " ";
         
-        duree = pso.getFg();
         this.tempsMinLabel.setText(" " + pso.getFg());        
         this.ordreTachesLabel.setText(" " + ordre);
     }//GEN-LAST:event_genererResultatMouseClicked
