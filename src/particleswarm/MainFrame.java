@@ -1,10 +1,12 @@
 package particleswarm;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.text.DecimalFormat;
+import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
@@ -40,6 +42,7 @@ public class MainFrame extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        fileChooser = new javax.swing.JFileChooser();
         jScrollPane1 = new javax.swing.JScrollPane();
         tableOfInput = new javax.swing.JTable();
         nbMachinesField = new javax.swing.JTextField();
@@ -56,6 +59,8 @@ public class MainFrame extends javax.swing.JFrame {
         genererResultat = new javax.swing.JLabel();
         genereDiagramme = new javax.swing.JLabel();
         bg = new javax.swing.JLabel();
+
+        fileChooser.setDialogTitle("Ouvrir un fichier");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -252,7 +257,18 @@ public class MainFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_c1FieldActionPerformed
 
     private void lireDepuisCsvMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lireDepuisCsvMouseClicked
-        String csvFile = "data.csv";
+        int returnVal = fileChooser.showOpenDialog(this);
+        if(returnVal == JFileChooser.APPROVE_OPTION) {
+            File file = fileChooser.getSelectedFile();
+//            String csvFile = new FileReader(file.getAbsolutePath());
+//            try {
+                System.out.println("Test file chooser.");
+//            } catch (IOException e) {
+//                System.out.println("");
+//            }
+
+        
+        
 	BufferedReader br = null;
 	String line = "";
 	String cvsSplitBy = ",";
@@ -261,7 +277,7 @@ public class MainFrame extends javax.swing.JFrame {
 	
         try {
                 
-		br = new BufferedReader(new FileReader(csvFile));
+		br = new BufferedReader(new FileReader(file));
                 int j = 0;
                 while ((line = br.readLine()) != null) {
                     String[] split = line.split(cvsSplitBy);
@@ -297,6 +313,9 @@ public class MainFrame extends javax.swing.JFrame {
                 model.addRow(new Object[]{Mc,Jb,temps});
             }
         tableOfInput.setModel(model);
+                } else {
+            System.out.println("");
+        }
     }//GEN-LAST:event_lireDepuisCsvMouseClicked
 
     private void validerMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_validerMouseClicked
@@ -420,6 +439,7 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JLabel bg;
     private javax.swing.JTextField c1Field;
     private javax.swing.JTextField c2Field;
+    private javax.swing.JFileChooser fileChooser;
     private javax.swing.JLabel genereDiagramme;
     private javax.swing.JLabel genererResultat;
     private javax.swing.JScrollPane jScrollPane1;
