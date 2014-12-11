@@ -312,7 +312,7 @@ public class MainFrame extends javax.swing.JFrame {
                     while ((line = br.readLine()) != null) {
                         String[] split = line.split(cvsSplitBy);
                         for (int i = 0; i < split.length; i++) {
-                            matr[j][i] = Integer.parseInt(split[i]);
+                            matr[j][i] = Double.parseDouble(split[i]);
                         }
                         j++;
                     }
