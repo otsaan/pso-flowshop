@@ -215,8 +215,8 @@ public class MainFrame extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void nbMachinesFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nbMachinesFieldActionPerformed
-        
-        
+
+
     }//GEN-LAST:event_nbMachinesFieldActionPerformed
 
     private void betaFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_betaFieldActionPerformed
@@ -224,26 +224,26 @@ public class MainFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_betaFieldActionPerformed
 
     private void nbTachesFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nbTachesFieldActionPerformed
-        
+
     }//GEN-LAST:event_nbTachesFieldActionPerformed
 
-    public double[][] getTableData (JTable table) {
+    public double[][] getTableData(JTable table) {
         DefaultTableModel dtm = (DefaultTableModel) table.getModel();
         double Matrice[][] = new double[nbTaches][nbMachines];
-        int itr=0;
-        for (int i = 0 ; i<nbMachines ; i++)
-        {
-            for (int j = 0 ; j <nbTaches ; j++)
-            {
-                if (dtm.getValueAt(itr,2)==null) return null;
-                Matrice[j][i] = Double.parseDouble(dtm.getValueAt(itr,2).toString());
+        int itr = 0;
+        for (int i = 0; i < nbMachines; i++) {
+            for (int j = 0; j < nbTaches; j++) {
+                if (dtm.getValueAt(itr, 2) == null) {
+                    return null;
+                }
+                Matrice[j][i] = Double.parseDouble(dtm.getValueAt(itr, 2).toString());
                 itr++;
             }
 
         }
         return Matrice;
     }
-        
+
     private void nbIterationsFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nbIterationsFieldActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_nbIterationsFieldActionPerformed
@@ -258,118 +258,109 @@ public class MainFrame extends javax.swing.JFrame {
 
     private void lireDepuisCsvMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lireDepuisCsvMouseClicked
         int returnVal = fileChooser.showOpenDialog(this);
-        if(returnVal == JFileChooser.APPROVE_OPTION) {
+        if (returnVal == JFileChooser.APPROVE_OPTION) {
             File file = fileChooser.getSelectedFile();
-//            String csvFile = new FileReader(file.getAbsolutePath());
-//            try {
-                System.out.println("Test file chooser.");
-//            } catch (IOException e) {
-//                System.out.println("");
-//            }
+            
+            BufferedReader br = null;
+            String line = "";
+            String cvsSplitBy = ",";
 
-        
-        
-	BufferedReader br = null;
-	String line = "";
-	String cvsSplitBy = ",";
-        
-        double matr[][] = new double[nbTaches][nbMachines];
-	
-        try {
-                
-		br = new BufferedReader(new FileReader(file));
+            double matr[][] = new double[nbTaches][nbMachines];
+
+            try {
+
+                br = new BufferedReader(new FileReader(file));
                 int j = 0;
                 while ((line = br.readLine()) != null) {
                     String[] split = line.split(cvsSplitBy);
-//                    System.out.println(split[0] + split[1] + split.length);
                     for (int i = 0; i < split.length; i++) {
-                        matr[j][i] = Double.parseDouble(split[i]);
-                        System.out.println(matr[j][i]);
+                        matr[j][i] = Integer.parseInt(split[i]);
                     }
                     j++;
-		}
- 
-	} catch (FileNotFoundException e) {
-		JOptionPane.showMessageDialog(this, "Fichier Inexistant", "Erreur", JOptionPane.ERROR_MESSAGE);
-	} catch (IOException e) {
-		JOptionPane.showMessageDialog(this, "Erreur de lecture", "Erreur", JOptionPane.ERROR_MESSAGE);
-	} finally {
-		if (br != null) {
-			try {
-				br.close();
-			} catch (IOException e) {
-				JOptionPane.showMessageDialog(this, "Erreur de lecture", "Erreur", JOptionPane.ERROR_MESSAGE);
-			}
-		}
-	}
+                }
 
-        DefaultTableModel model = new DefaultTableModel();  
-        for (int i=0; i<nbMachines ; i++)
-            for (int j=0; j<nbTaches ; j++)
-            {
-                String Jb = "T" + (j+1);
-                String Mc = "M" + (i+1);
-                String temps = matr[j][i] + "";
-                model.addRow(new Object[]{Mc,Jb,temps});
+            } catch (FileNotFoundException e) {
+                JOptionPane.showMessageDialog(this, "Fichier Inexistant", "Erreur", JOptionPane.ERROR_MESSAGE);
+            } catch (IOException e) {
+                JOptionPane.showMessageDialog(this, "Erreur de lecture", "Erreur", JOptionPane.ERROR_MESSAGE);
+            } finally {
+                if (br != null) {
+                    try {
+                        br.close();
+                    } catch (IOException e) {
+                        JOptionPane.showMessageDialog(this, "Erreur de lecture", "Erreur", JOptionPane.ERROR_MESSAGE);
+                    }
+                }
             }
-        tableOfInput.setModel(model);
-                } else {
+              
+            DefaultTableModel model = new DefaultTableModel();
+            model.addColumn("");
+            model.addColumn("");
+            model.addColumn("");
+            for (int i = 0; i < nbMachines; i++) {
+                for (int j = 0; j < nbTaches; j++) {
+                    String Jb = "T" + (j + 1);
+                    String Mc = "M" + (i + 1);
+                    String temps =  matr[j][i] + "";
+                    model.addRow(new Object[]{Mc, Jb, temps});
+                }
+            }            
+            tableOfInput.setModel(model);
+        } else {
             System.out.println("");
         }
     }//GEN-LAST:event_lireDepuisCsvMouseClicked
 
     private void validerMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_validerMouseClicked
-         try {
+        try {
             nbTaches = Integer.parseInt(nbTachesField.getText());
             nbMachines = Integer.parseInt(nbMachinesField.getText());
-        } catch(Exception e) {
+        } catch (Exception e) {
             JOptionPane.showMessageDialog(this, "Veuillez entrer un numéro valide", "Erreur", JOptionPane.ERROR_MESSAGE);
         }
-//        System.out.println(nbMachines + "  " + nbTaches);
-        
-        DefaultTableModel model = new DefaultTableModel();  
-        model.addColumn(""); 
+
+        DefaultTableModel model = new DefaultTableModel();
         model.addColumn("");
         model.addColumn("");
-        for (int i=1; i<=nbMachines ; i++)
-            for (int j=1; j<=nbTaches ; j++)
-            {
-                String Jb = "T"+j;
-                String Mc = "M"+i;
-                model.addRow(new Object[]{Mc,Jb});
+        model.addColumn("");
+        for (int i = 1; i <= nbMachines; i++) {
+            for (int j = 1; j <= nbTaches; j++) {
+                String Jb = "T" + j;
+                String Mc = "M" + i;
+                model.addRow(new Object[]{Mc, Jb});
             }
+        }
         tableOfInput.setModel(model);
     }//GEN-LAST:event_validerMouseClicked
 
     private void genererResultatMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_genererResultatMouseClicked
-         
+
+        ordre = "";
         double omega = 1.2;
         double beta = 0.975;
         double c1 = 2;
         double c2 = 2;
         int nbIterations = 0;
-        
+
         try {
             omega = Double.parseDouble(omegaField.getText());
             beta = Double.parseDouble(betaField.getText());
             c1 = Double.parseDouble(c1Field.getText());
             c2 = Double.parseDouble(c2Field.getText());
             nbIterations = Integer.parseInt(nbIterationsField.getText());
-        } catch(Exception e) {
+        } catch (Exception e) {
             JOptionPane.showMessageDialog(this, "Veuillez entrer un numéro valide", "Erreur", JOptionPane.ERROR_MESSAGE);
         }
-        
-        PSO pso= new PSO(nbTaches, nbMachines);
-        
+
+        PSO pso = new PSO(nbTaches, nbMachines);
+
         pso.setBetha(beta);
         pso.setC1(c1);
         pso.setC2(c2);
         pso.setW0(omega);
-        
-        
 
         double mat[][] = getTableData(tableOfInput);
-   
+
         pso.setInitialJobs(mat);
         pso.initialise();
         pso.findPermutaion();
@@ -377,21 +368,21 @@ public class MainFrame extends javax.swing.JFrame {
         pso.findPersonaleBest();
         pso.findGloabalBest();
 
-        for(int i=0;i<nbIterations;i++)
-        {
+        for (int i = 0; i < nbIterations; i++) {
             pso.generateXV();
             pso.findPermutaion();
             pso.completionTime();
             pso.findPersonaleBest();
-            pso.findGloabalBest();  
+            pso.findGloabalBest();
         }
         DecimalFormat df = new DecimalFormat("#");
 
-        for(int i=0;i<pso.getN();i++)
+        for (int i = 0; i < pso.getN(); i++) {
             ordre += df.format(pso.getG()[i]) + " ";
+        }
         
-        this.tempsMinLabel.setText(" " + pso.getFg());        
-        this.ordreTachesLabel.setText(" " + ordre);
+        this.tempsMinLabel.setText("" + pso.getFg());
+        this.ordreTachesLabel.setText(ordre);
     }//GEN-LAST:event_genererResultatMouseClicked
 
     private void c2FieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_c2FieldActionPerformed
