@@ -216,7 +216,7 @@ public class MainFrame extends javax.swing.JFrame {
                 lireDepuisCsvMouseClicked(evt);
             }
         });
-        getContentPane().add(lireDepuisCsv, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 202, 190, 30));
+        getContentPane().add(lireDepuisCsv, new org.netbeans.lib.awtextra.AbsoluteConstraints(48, 204, 180, 30));
 
         valider.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         valider.setName(""); // NOI18N
@@ -233,7 +233,7 @@ public class MainFrame extends javax.swing.JFrame {
                 genererResultatMouseClicked(evt);
             }
         });
-        getContentPane().add(genererResultat, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 340, 140, 20));
+        getContentPane().add(genererResultat, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 330, 150, 30));
 
         genereDiagramme.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         genereDiagramme.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -241,7 +241,7 @@ public class MainFrame extends javax.swing.JFrame {
                 genereDiagrammeMouseClicked(evt);
             }
         });
-        getContentPane().add(genereDiagramme, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 340, 140, 20));
+        getContentPane().add(genereDiagramme, new org.netbeans.lib.awtextra.AbsoluteConstraints(595, 330, 160, 30));
 
         bg.setIcon(new javax.swing.ImageIcon(getClass().getResource("/particleswarm/images/pso.png"))); // NOI18N
         bg.setText(" ");
