@@ -386,7 +386,7 @@ public class MainFrame extends javax.swing.JFrame {
     private void genererMatriceToExport() {
         
         double mat[][] = getTableData(tableOfInput);
-        
+        fileOutput = "";
         for (int i = 0; i < mat.length; i++) {
             
             for (int j = 0; j < mat[i].length; j++) {
