@@ -1,13 +1,23 @@
 package particleswarm;
 
+import java.awt.BorderLayout;
+import java.awt.Dimension;
+import java.awt.GridLayout;
+import java.awt.PopupMenu;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.text.DecimalFormat;
+import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JFileChooser;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
@@ -28,7 +38,9 @@ public class MainFrame extends javax.swing.JFrame {
     private int nbTaches = 0;
     private int nbMachines = 0;
     private String ordre = "";
-
+    private double matrice[][];
+    private double tempsMin;
+    
     public MainFrame() {
         initComponents();
     }
@@ -205,6 +217,11 @@ public class MainFrame extends javax.swing.JFrame {
         getContentPane().add(genererResultat, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 340, 140, 20));
 
         genereDiagramme.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        genereDiagramme.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                genereDiagrammeMouseClicked(evt);
+            }
+        });
         getContentPane().add(genereDiagramme, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 340, 140, 20));
 
         bg.setIcon(new javax.swing.ImageIcon(getClass().getResource("/particleswarm/images/pso.png"))); // NOI18N
@@ -383,11 +400,22 @@ public class MainFrame extends javax.swing.JFrame {
         
         this.tempsMinLabel.setText("" + pso.getFg());
         this.ordreTachesLabel.setText(ordre);
+        matrice = mat;
+        tempsMin = pso.getFg();
     }//GEN-LAST:event_genererResultatMouseClicked
 
     private void c2FieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_c2FieldActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_c2FieldActionPerformed
+
+    private void genereDiagrammeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_genereDiagrammeMouseClicked
+        JFrame f = new JFrame("Test");
+        f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        GanttPanel convPanel = new GanttPanel(tempsMin, nbMachines, nbTaches, matrice, ordre);
+        f.add(convPanel);
+        f.setSize(400,250);
+        f.setVisible(true);
+    }//GEN-LAST:event_genereDiagrammeMouseClicked
 
     /**
      * @param args the command line arguments
