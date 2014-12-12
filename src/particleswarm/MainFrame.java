@@ -481,7 +481,7 @@ public class MainFrame extends javax.swing.JFrame {
 
     private void genereDiagrammeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_genereDiagrammeMouseClicked
         JFrame f = new JFrame("Diagramme de Gantt");
-        f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        f.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
         GanttPanel convPanel = new GanttPanel(tempsMin, nbMachines, nbTaches, matrice, ordre);
         f.add(convPanel);
         f.setSize(400,250);
