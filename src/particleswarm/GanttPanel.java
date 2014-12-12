@@ -9,7 +9,8 @@ public class GanttPanel extends JPanel {
         private int nbTach;
 	final int pushX = 40; 
 	final int pushY = 45; 
-	double[] machineTime; 
+	String[] order;
+        double[] machineTime; 
         double[][] matr; 
 	
 	public GanttPanel (double tempsMin, int nbMach, int nbTach, double mat[][], String ordre) {
@@ -17,7 +18,23 @@ public class GanttPanel extends JPanel {
                 minTime = tempsMin;
                 this.nbMach = nbMach;
                 this.nbTach = nbTach;
-                matr = mat;
+                
+                matr = new double[nbTach][nbMach];
+                String[] order = ordre.split(" ");
+                
+                
+                int[] ints = new int[order.length];
+                for (int i=0; i < order.length; i++) {
+                    ints[i] = Integer.parseInt(order[i]);
+                }
+                     
+                for(int i = 0 ; i < nbTach ; i++){
+                    int l = ints[i]-1;
+                    for(int j = 0; j < nbMach; j++){
+                        System.out.println(mat[l][j]);
+                        matr[i][j] = mat[l][j];
+                    }
+                }
 	}
 	
 	private void jobRect(Graphics g, int i, int j, double wx, double h, double start) {
@@ -39,11 +56,11 @@ public class GanttPanel extends JPanel {
 		int machineCount = nbMach;
 		int jobCount = nbTach;
 		
-		double boxWidthX = w / (minTime+2.0);
+		double boxWidthX = w / (minTime + minTime * 0.1);
 		double boxHeight = h / machineCount;
 
 		g.setColor(new Color(0, 0, 0));
-		g.drawString("Nombre de machines: " + nbMach + "   Nombre de tâches: " + nbTach + ".    time: " + Double.toString(minTime), pushX, 15);
+		g.drawString("Nombre de machines: " + nbMach + "   Nombre de tâches: " + nbTach + ".    Temps: " + Double.toString(minTime), pushX, 15);
 		
 		//Cadre
 		g.setColor(new Color(0, 0, 255));
