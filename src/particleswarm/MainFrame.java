@@ -181,13 +181,13 @@ public class MainFrame extends javax.swing.JFrame {
         });
         getContentPane().add(nbIterationsField, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 430, 30, -1));
 
-        saveMatrice.setText("save");
+        saveMatrice.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         saveMatrice.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 saveMatriceMouseClicked(evt);
             }
         });
-        getContentPane().add(saveMatrice, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 250, -1, -1));
+        getContentPane().add(saveMatrice, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 250, 170, 30));
 
         tempsMinLabel.setFont(new java.awt.Font("Bitter", 0, 14)); // NOI18N
         tempsMinLabel.setForeground(new java.awt.Color(255, 255, 255));
