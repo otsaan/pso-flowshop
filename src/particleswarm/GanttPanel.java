@@ -39,7 +39,7 @@ public class GanttPanel extends JPanel {
 		int machineCount = nbMach;
 		int jobCount = nbTach;
 		
-		double boxWidthX = w / minTime;
+		double boxWidthX = w / (minTime+1.0);
 		double boxHeight = h / machineCount;
 
 		g.setColor(new Color(0, 0, 0));
