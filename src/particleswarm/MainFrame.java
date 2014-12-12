@@ -1,5 +1,6 @@
 package particleswarm;
 
+import com.itextpdf.text.DocumentException;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.GridLayout;
@@ -468,10 +469,30 @@ public class MainFrame extends javax.swing.JFrame {
             ordre += df.format(pso.getG()[i]) + " ";
         }
         
+        String[] array = ordre.split(" ");
+        int[] ints = new int[array.length];
+        for (int i=0; i < array.length; i++) {
+            ints[i] = Integer.parseInt(array[i]);
+        }
+                
         this.tempsMinLabel.setText("" + pso.getFg());
         this.ordreTachesLabel.setText(ordre);
         matrice = mat;
         tempsMin = pso.getFg();
+        PDFGenerator pdf = new PDFGenerator();
+        int[][] mat2 = new int[nbTaches][nbMachines];
+        for (int i = 0; i < nbTaches; i++) {
+            for (int j = 0; j < nbMachines; j++) {
+                mat2[i][j] = (int) matrice[i][j];
+            }
+        }
+        try {
+            pdf.underRect(mat2, ints, nbTaches, nbMachines);
+        } catch (IOException ex) {
+            JOptionPane.showMessageDialog(this, "Erreur lors d'enregistrement du fichier", "Erreur", JOptionPane.ERROR_MESSAGE);
+        } catch (DocumentException ex) {
+            JOptionPane.showMessageDialog(this, "Impossible de créer le fichier pdf", "Erreur", JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_genererResultatMouseClicked
 
     private void c2FieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_c2FieldActionPerformed
