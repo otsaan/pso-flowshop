@@ -10,10 +10,15 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.io.PrintWriter;
+import java.io.UnsupportedEncodingException;
 import java.text.DecimalFormat;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -37,10 +42,14 @@ public class MainFrame extends javax.swing.JFrame {
      */
     private int nbTaches = 0;
     private int nbMachines = 0;
+    
+    private int exportedMatrixNumber = 1;
+    private String fileOutput = "";
+    
     private String ordre = "";
     private double matrice[][];
     private double tempsMin;
-    
+
     public MainFrame() {
         initComponents();
     }
@@ -64,6 +73,7 @@ public class MainFrame extends javax.swing.JFrame {
         c1Field = new javax.swing.JTextField();
         c2Field = new javax.swing.JTextField();
         nbIterationsField = new javax.swing.JTextField();
+        saveMatrice = new javax.swing.JLabel();
         tempsMinLabel = new javax.swing.JLabel();
         ordreTachesLabel = new javax.swing.JLabel();
         lireDepuisCsv = new javax.swing.JLabel();
@@ -182,6 +192,14 @@ public class MainFrame extends javax.swing.JFrame {
         });
         getContentPane().add(nbIterationsField, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 430, 30, -1));
 
+        saveMatrice.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        saveMatrice.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                saveMatriceMouseClicked(evt);
+            }
+        });
+        getContentPane().add(saveMatrice, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 250, 170, 30));
+
         tempsMinLabel.setFont(new java.awt.Font("Bitter", 0, 14)); // NOI18N
         tempsMinLabel.setForeground(new java.awt.Color(255, 255, 255));
         getContentPane().add(tempsMinLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 390, 130, 40));
@@ -275,59 +293,89 @@ public class MainFrame extends javax.swing.JFrame {
 
     private void lireDepuisCsvMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lireDepuisCsvMouseClicked
         int returnVal = fileChooser.showOpenDialog(this);
+        
         if (returnVal == JFileChooser.APPROVE_OPTION) {
-            File file = fileChooser.getSelectedFile();
-            
-            BufferedReader br = null;
-            String line = "";
-            String cvsSplitBy = ",";
-
-            double matr[][] = new double[nbTaches][nbMachines];
-
             try {
-
-                br = new BufferedReader(new FileReader(file));
-                int j = 0;
-                while ((line = br.readLine()) != null) {
-                    String[] split = line.split(cvsSplitBy);
-                    for (int i = 0; i < split.length; i++) {
-                        matr[j][i] = Integer.parseInt(split[i]);
-                    }
-                    j++;
+                File file = fileChooser.getSelectedFile();
+                
+                BufferedReader filebr = new BufferedReader(new FileReader(file));
+                int linesCount = 1;
+                int columnsCount = 0;
+                
+                String getline = "";
+                getline = filebr.readLine();
+                String[] splitResult = getline.split(",");
+                
+                nbMachines = splitResult.length;
+//                System.out.println("nbMachines: " + nbMachines);
+                
+                while(filebr.readLine() != null)  {
+                    linesCount++;
                 }
-
-            } catch (FileNotFoundException e) {
-                JOptionPane.showMessageDialog(this, "Fichier Inexistant", "Erreur", JOptionPane.ERROR_MESSAGE);
-            } catch (IOException e) {
-                JOptionPane.showMessageDialog(this, "Erreur de lecture", "Erreur", JOptionPane.ERROR_MESSAGE);
-            } finally {
-                if (br != null) {
-                    try {
-                        br.close();
-                    } catch (IOException e) {
-                        JOptionPane.showMessageDialog(this, "Erreur de lecture", "Erreur", JOptionPane.ERROR_MESSAGE);
+                
+                nbTaches = linesCount;
+//                System.out.println("nbTaches: " + nbTaches);
+                
+                BufferedReader br = null;
+                String line = "";
+                String cvsSplitBy = ",";
+                
+                double matr[][] = new double[nbTaches][nbMachines];
+                
+                try {
+                    br = new BufferedReader(new FileReader(file));
+                    int j = 0;
+                    while ((line = br.readLine()) != null) {
+                        String[] split = line.split(cvsSplitBy);
+                        for (int i = 0; i < split.length; i++) {
+                            matr[j][i] = Double.parseDouble(split[i]);
+                        }
+                        j++;
+                    }
+                    
+                } catch (FileNotFoundException e) {
+                    JOptionPane.showMessageDialog(this, "Fichier Inexistant", "Erreur", JOptionPane.ERROR_MESSAGE);
+                } catch (IOException e) {
+                    JOptionPane.showMessageDialog(this, "Erreur de lecture", "Erreur", JOptionPane.ERROR_MESSAGE);
+                } finally {
+                    if (br != null) {
+                        try {
+                            br.close();
+                        } catch (IOException e) {
+                            JOptionPane.showMessageDialog(this, "Erreur de lecture", "Erreur", JOptionPane.ERROR_MESSAGE);
+                        }
                     }
                 }
+                
+                DefaultTableModel model = new DefaultTableModel();
+                model.addColumn("");
+                model.addColumn("");
+                model.addColumn("");
+                for (int i = 0; i < nbMachines; i++) {
+                    for (int j = 0; j < nbTaches; j++) {
+                        String Jb = "T" + (j + 1);
+                        String Mc = "M" + (i + 1);
+                        String temps =  matr[j][i] + "";
+                        model.addRow(new Object[]{Mc, Jb, temps});
+                    }
+                }
+                tableOfInput.setModel(model);
+            } catch (IOException ex) {
+                Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);
             }
-              
-            DefaultTableModel model = new DefaultTableModel();
-            model.addColumn("");
-            model.addColumn("");
-            model.addColumn("");
-            for (int i = 0; i < nbMachines; i++) {
-                for (int j = 0; j < nbTaches; j++) {
-                    String Jb = "T" + (j + 1);
-                    String Mc = "M" + (i + 1);
-                    String temps =  matr[j][i] + "";
-                    model.addRow(new Object[]{Mc, Jb, temps});
-                }
-            }            
-            tableOfInput.setModel(model);
         } else {
             System.out.println("");
         }
     }//GEN-LAST:event_lireDepuisCsvMouseClicked
 
+    public static double[][] transposeMatrix(double [][]m){
+        double[][] temp = new double[m[0].length][m.length];
+        for (int i = 0; i < m.length; i++)
+            for (int j = 0; j < m[0].length; j++)
+                temp[j][i] = m[i][j];
+        return temp;
+    }
+     
     private void validerMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_validerMouseClicked
         try {
             nbTaches = Integer.parseInt(nbTachesField.getText());
@@ -349,7 +397,28 @@ public class MainFrame extends javax.swing.JFrame {
         }
         tableOfInput.setModel(model);
     }//GEN-LAST:event_validerMouseClicked
+    
+    
+    private void genererMatriceToExport() {
+        
+        double mat[][] = getTableData(tableOfInput);
+        fileOutput = "";
+        for (int i = 0; i < mat.length; i++) {
+            
+            for (int j = 0; j < mat[i].length; j++) {
+                if (j == (mat[i].length - 1)) {
+                    fileOutput += mat[i][j];
+                } else {
+                    fileOutput += mat[i][j]+ ",";
+                }
 
+            }
+            fileOutput += "\n";
+
+        }
+    }
+    
+    
     private void genererResultatMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_genererResultatMouseClicked
 
         ordre = "";
@@ -375,9 +444,10 @@ public class MainFrame extends javax.swing.JFrame {
         pso.setC1(c1);
         pso.setC2(c2);
         pso.setW0(omega);
-
+       
+       
         double mat[][] = getTableData(tableOfInput);
-
+        
         pso.setInitialJobs(mat);
         pso.initialise();
         pso.findPermutaion();
@@ -408,14 +478,41 @@ public class MainFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_c2FieldActionPerformed
 
+
     private void genereDiagrammeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_genereDiagrammeMouseClicked
-        JFrame f = new JFrame("Test");
+        JFrame f = new JFrame("Diagramme de Gantt");
         f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         GanttPanel convPanel = new GanttPanel(tempsMin, nbMachines, nbTaches, matrice, ordre);
         f.add(convPanel);
         f.setSize(400,250);
         f.setVisible(true);
     }//GEN-LAST:event_genereDiagrammeMouseClicked
+
+    private void saveMatriceMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_saveMatriceMouseClicked
+        
+        JFileChooser fileChooser = new JFileChooser();
+        
+        if (fileChooser.showSaveDialog(this) == JFileChooser.APPROVE_OPTION) {
+          FileWriter fw = null;
+            try {
+                fw = new FileWriter(fileChooser.getSelectedFile()+".csv");
+                genererMatriceToExport();
+                fw.write(fileOutput);
+                // save to file
+            } catch (IOException ex) {
+                Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);
+            } finally {
+                try {
+                    fw.close();
+                     exportedMatrixNumber++;
+                } catch (IOException ex) {
+                    Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        }
+        
+    }//GEN-LAST:event_saveMatriceMouseClicked
+
 
     /**
      * @param args the command line arguments
@@ -468,6 +565,7 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JTextField nbTachesField;
     private javax.swing.JTextField omegaField;
     private javax.swing.JLabel ordreTachesLabel;
+    private javax.swing.JLabel saveMatrice;
     private javax.swing.JTable tableOfInput;
     private javax.swing.JLabel tempsMinLabel;
     private javax.swing.JLabel valider;
