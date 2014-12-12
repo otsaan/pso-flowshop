@@ -317,6 +317,9 @@ public class MainFrame extends javax.swing.JFrame {
                 nbTaches = linesCount;
 //                System.out.println("nbTaches: " + nbTaches);
                 
+                nbMachinesField.setText(Integer.toString(nbMachines));
+                nbTachesField.setText(Integer.toString(nbTaches));
+                
                 BufferedReader br = null;
                 String line = "";
                 String cvsSplitBy = ",";
