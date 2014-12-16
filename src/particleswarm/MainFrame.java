@@ -50,9 +50,12 @@ public class MainFrame extends javax.swing.JFrame {
     private String ordre = "";
     private double matrice[][];
     private double tempsMin;
-
+    
+    
     public MainFrame() {
         initComponents();
+        fileChooser.addChoosableFileFilter(new PersonalFileFilter());
+        fileChooser.setAcceptAllFileFilterUsed(false);
     }
 
     /**
@@ -367,8 +370,6 @@ public class MainFrame extends javax.swing.JFrame {
             } catch (IOException ex) {
                 Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);
             }
-        } else {
-            System.out.println("");
         }
     }//GEN-LAST:event_lireDepuisCsvMouseClicked
 
@@ -523,6 +524,7 @@ public class MainFrame extends javax.swing.JFrame {
                 genererMatriceToExport();
                 fw.write(fileOutput);
                 // save to file
+                JOptionPane.showMessageDialog(rootPane, "Matrice enregistré");
             } catch (IOException ex) {
                 Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);
             } finally {

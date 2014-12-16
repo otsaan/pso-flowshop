@@ -31,7 +31,7 @@ public class GanttPanel extends JPanel {
                 for(int i = 0 ; i < nbTach ; i++){
                     int l = ints[i]-1;
                     for(int j = 0; j < nbMach; j++){
-                        System.out.println(mat[l][j]);
+//                        System.out.println(mat[l][j]);
                         matr[i][j] = mat[l][j];
                     }
                 }
