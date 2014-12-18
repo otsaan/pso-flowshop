@@ -51,6 +51,8 @@ public class MainFrame extends javax.swing.JFrame {
     private double matrice[][];
     private double tempsMin;
     
+    private boolean genererClicked = false;
+    
     
     public MainFrame() {
         initComponents();
@@ -431,7 +433,9 @@ public class MainFrame extends javax.swing.JFrame {
     
     
     private void genererResultatMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_genererResultatMouseClicked
-
+        
+        genererClicked = true;
+        
         ordre = "";
         double omega = 1.2;
         double beta = 0.975;
@@ -455,7 +459,7 @@ public class MainFrame extends javax.swing.JFrame {
         pso.setC1(c1);
         pso.setC2(c2);
         pso.setW0(omega);
-       long startTime = System.currentTimeMillis();
+        long startTime = System.currentTimeMillis();
        
         double mat[][] = getTableData(tableOfInput);
         
@@ -517,11 +521,16 @@ public class MainFrame extends javax.swing.JFrame {
 
 
     private void genereDiagrammeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_genereDiagrammeMouseClicked
+        
+        if (genererClicked == false) {
+            genererResultatMouseClicked(evt);
+        }
+        
         JFrame f = new JFrame("Diagramme de Gantt");
         f.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
         GanttPanel convPanel = new GanttPanel(tempsMin, nbMachines, nbTaches, matrice, ordre);
         f.add(convPanel);
-        f.setSize(600,400);
+        f.setSize(800,400);
         f.setVisible(true);
     }//GEN-LAST:event_genereDiagrammeMouseClicked
 
