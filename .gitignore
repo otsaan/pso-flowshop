@@ -20,3 +20,4 @@ nbproject/*
 *.DS_Store
 *.lock
 *.pdf
+*.properties
