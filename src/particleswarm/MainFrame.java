@@ -77,6 +77,7 @@ public class MainFrame extends javax.swing.JFrame {
         c1Field = new javax.swing.JTextField();
         c2Field = new javax.swing.JTextField();
         nbIterationsField = new javax.swing.JTextField();
+        executionTimeLabel = new javax.swing.JLabel();
         saveMatrice = new javax.swing.JLabel();
         tempsMinLabel = new javax.swing.JLabel();
         ordreTachesLabel = new javax.swing.JLabel();
@@ -195,6 +196,11 @@ public class MainFrame extends javax.swing.JFrame {
             }
         });
         getContentPane().add(nbIterationsField, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 430, 30, -1));
+
+        executionTimeLabel.setFont(new java.awt.Font("Lucida Grande", 0, 15)); // NOI18N
+        executionTimeLabel.setForeground(new java.awt.Color(255, 255, 255));
+        executionTimeLabel.setText("Temps d'exécution: ");
+        getContentPane().add(executionTimeLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 500, -1, -1));
 
         saveMatrice.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         saveMatrice.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -449,7 +455,7 @@ public class MainFrame extends javax.swing.JFrame {
         pso.setC1(c1);
         pso.setC2(c2);
         pso.setW0(omega);
-       
+       long startTime = System.currentTimeMillis();
        
         double mat[][] = getTableData(tableOfInput);
         
@@ -478,7 +484,13 @@ public class MainFrame extends javax.swing.JFrame {
         for (int i=0; i < array.length; i++) {
             ints[i] = Integer.parseInt(array[i]);
         }
-                
+            
+        long stopTime = System.currentTimeMillis();
+        long elapsedTime = stopTime - startTime;
+//        System.out.println((elapsedTime / 1000.0) + " s");
+      
+        executionTimeLabel.setText(executionTimeLabel.getText() + (elapsedTime / 1000.0) + " s");
+        
         this.tempsMinLabel.setText("" + pso.getFg());
         this.ordreTachesLabel.setText(ordre);
         matrice = mat;
@@ -509,7 +521,7 @@ public class MainFrame extends javax.swing.JFrame {
         f.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
         GanttPanel convPanel = new GanttPanel(tempsMin, nbMachines, nbTaches, matrice, ordre);
         f.add(convPanel);
-        f.setSize(400,250);
+        f.setSize(600,400);
         f.setVisible(true);
     }//GEN-LAST:event_genereDiagrammeMouseClicked
 
@@ -581,6 +593,7 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JLabel bg;
     private javax.swing.JTextField c1Field;
     private javax.swing.JTextField c2Field;
+    private javax.swing.JLabel executionTimeLabel;
     private javax.swing.JFileChooser fileChooser;
     private javax.swing.JLabel genereDiagramme;
     private javax.swing.JLabel genererResultat;
