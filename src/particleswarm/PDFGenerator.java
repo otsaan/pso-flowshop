@@ -37,10 +37,10 @@ public class PDFGenerator {
         PdfWriter.getInstance(document, new FileOutputStream("flowshop.pdf"));
         PdfWriter writer= PdfWriter.getInstance(document, new FileOutputStream("flowshop.pdf"));
         document.open();
-        Paragraph p = new Paragraph("Essaim Particule", new Font(FontFamily.HELVETICA,18));
+        Paragraph p = new Paragraph("Essaim Particulaire", new Font(FontFamily.HELVETICA,18));
         p.setAlignment(Element.ALIGN_CENTER);
         document.add(p);
-        Paragraph q = new Paragraph("Le résultat graphique aprés l'utilisation de l'algorithme Essaim Particule: ");
+        Paragraph q = new Paragraph("Le résultat graphique aprés l'utilisation de l'algorithme Essaim Particulaire: ");
         q.setAlignment(Element.ALIGN_CENTER);
         document.add(q);
         
@@ -104,7 +104,7 @@ public class PDFGenerator {
 //        }
 
         
-        Paragraph p1 = new Paragraph("Aprés l'échange: ");
+        Paragraph p1 = new Paragraph("Aprés la permutation: ");
         p1.setSpacingBefore(130);
         document.add(p1);
         

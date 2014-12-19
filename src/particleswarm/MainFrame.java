@@ -493,7 +493,7 @@ public class MainFrame extends javax.swing.JFrame {
         long elapsedTime = stopTime - startTime;
 //        System.out.println((elapsedTime / 1000.0) + " s");
       
-        executionTimeLabel.setText(executionTimeLabel.getText() + (elapsedTime / 1000.0) + " s");
+        executionTimeLabel.setText("Temps d'exécution: " + (elapsedTime / 1000.0) + " s");
         
         this.tempsMinLabel.setText("" + pso.getFg());
         this.ordreTachesLabel.setText(ordre);
