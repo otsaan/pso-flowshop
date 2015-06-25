@@ -53,11 +53,14 @@ public class MainFrame extends javax.swing.JFrame {
     
     private boolean genererClicked = false;
     
+    public OrdersFrame ordersFrame;
+    
     
     public MainFrame() {
         initComponents();
         fileChooser.addChoosableFileFilter(new PersonalFileFilter());
         fileChooser.setAcceptAllFileFilterUsed(false);
+        setLocationRelativeTo(null);
     }
 
     /**
@@ -79,6 +82,7 @@ public class MainFrame extends javax.swing.JFrame {
         c1Field = new javax.swing.JTextField();
         c2Field = new javax.swing.JTextField();
         nbIterationsField = new javax.swing.JTextField();
+        ordersMatrix = new javax.swing.JLabel();
         executionTimeLabel = new javax.swing.JLabel();
         saveMatrice = new javax.swing.JLabel();
         tempsMinLabel = new javax.swing.JLabel();
@@ -199,6 +203,14 @@ public class MainFrame extends javax.swing.JFrame {
         });
         getContentPane().add(nbIterationsField, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 430, 30, -1));
 
+        ordersMatrix.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        ordersMatrix.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                ordersMatrixMouseClicked(evt);
+            }
+        });
+        getContentPane().add(ordersMatrix, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 250, 160, 30));
+
         executionTimeLabel.setFont(new java.awt.Font("Lucida Grande", 0, 15)); // NOI18N
         executionTimeLabel.setForeground(new java.awt.Color(255, 255, 255));
         executionTimeLabel.setText("Temps d'exécution: ");
@@ -210,7 +222,7 @@ public class MainFrame extends javax.swing.JFrame {
                 saveMatriceMouseClicked(evt);
             }
         });
-        getContentPane().add(saveMatrice, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 250, 170, 30));
+        getContentPane().add(saveMatrice, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 250, 170, 30));
 
         tempsMinLabel.setFont(new java.awt.Font("Bitter", 0, 14)); // NOI18N
         tempsMinLabel.setForeground(new java.awt.Color(255, 255, 255));
@@ -254,7 +266,7 @@ public class MainFrame extends javax.swing.JFrame {
         });
         getContentPane().add(genereDiagramme, new org.netbeans.lib.awtextra.AbsoluteConstraints(595, 330, 160, 30));
 
-        bg.setIcon(new javax.swing.ImageIcon(getClass().getResource("/particleswarm/images/pso.png"))); // NOI18N
+        bg.setIcon(new javax.swing.ImageIcon(getClass().getResource("/particleswarm/images/pso-job-shop.png"))); // NOI18N
         bg.setText(" ");
         getContentPane().add(bg, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 800, 550));
 
@@ -560,6 +572,12 @@ public class MainFrame extends javax.swing.JFrame {
         
     }//GEN-LAST:event_saveMatriceMouseClicked
 
+    private void ordersMatrixMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ordersMatrixMouseClicked
+        // TODO add your handling code here:
+        this.ordersFrame = new OrdersFrame(this.nbTaches, this.nbMachines);
+        this.ordersFrame.setVisible(true);
+    }//GEN-LAST:event_ordersMatrixMouseClicked
+
 
     /**
      * @param args the command line arguments
@@ -612,6 +630,7 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JTextField nbMachinesField;
     private javax.swing.JTextField nbTachesField;
     private javax.swing.JTextField omegaField;
+    private javax.swing.JLabel ordersMatrix;
     private javax.swing.JLabel ordreTachesLabel;
     private javax.swing.JLabel saveMatrice;
     private javax.swing.JTable tableOfInput;
